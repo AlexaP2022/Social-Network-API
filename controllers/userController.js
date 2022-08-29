@@ -2,7 +2,7 @@ const {User} = require('../models');
 
 module.exports = {
     //get all users
-    getUsers(req,res) {
+    getUsers(req, res) {
         User.find()
         .then((users) => res.json(users))
         .catch((err) => res.status(500).json(err));
@@ -13,7 +13,7 @@ module.exports = {
         .select('-__v')
         .then((user) =>
         !user
-            ? res.status(404).json({ message: 'No user with that ID'})
+            ? res.status(404).json({ message: 'No user with that ID exists'})
             : res.json(user)
         )
         .catch((err) => res.status(500).json(err));
