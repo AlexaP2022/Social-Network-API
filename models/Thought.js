@@ -1,5 +1,5 @@
 const { ObjectID } = require('bson');
-const { Schema, Types } = require('mongoose');
+const { Schema, Types, model } = require('mongoose');
 const moment = require('moment');
 
 const reactionSchema = new Schema(
@@ -43,7 +43,8 @@ const thoughtSchema = new Schema(
             type: Date,
             required: true,
             default: Date.now,
-            //getter method to format the timestamp on query
+            get: (createdAtVal) => moment(createdatVal).format('MMM DD, YYYY, [at] hh:mm a')
+
         },
         reactions: [reactionSchema]
 
