@@ -14,9 +14,11 @@ const userSchema = new Schema(
       required: true,
       unique: true,
       validate: {
-        validator: () => Promise.resolve(false),
-        message: "Email validation failed"
-      }
+        validator: validateEmail = (email) => {
+            return /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/.test(email);
+        },
+        message: "Please enter a valid email."
+    },
     },
     thoughts: [{
       type: Schema.Types.ObjectID,
